@@ -69,7 +69,7 @@ const usersController = {
         )
           .then((dbUserData) => {
             if (!dbUserData) {
-              res.status(404).json({ message: 'NA' });
+              res.status(404).json({ message: 'N/A' });
               return;
             }
             res.json(dbUserData);
@@ -85,7 +85,7 @@ const usersController = {
         )
           .then((dbUserData) => {
             if (!dbUserData) {
-              res.status(404).json({ message: 'NA' });
+              res.status(404).json({ message: 'N/A' });
               return;
             }
             res.json(dbUserData);

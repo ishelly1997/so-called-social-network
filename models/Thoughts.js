@@ -1,6 +1,6 @@
 const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
-const { DataTypes } = require('sequelize/types');
+
 
 const reactionsSchema = new Schema (
   {

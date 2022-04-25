@@ -37,7 +37,7 @@ const thoughtsController = {
             )
             .then(dbUserData => {
                 if (!dbUserData) {
-                    res.status(404).json({ message: 'NA' });
+                    res.status(404).json({ message: 'N/A' });
                     return;
                 }
                 res.json(dbUserData);
@@ -52,7 +52,7 @@ const thoughtsController = {
         Thoughts.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
           .then(dbThoughtsData => {
             if (!dbThoughtsData) {
-              res.status(404).json({ message: 'NA' });
+              res.status(404).json({ message: 'N/A' });
               return;
             }
             res.json(dbThoughtsData);
@@ -64,7 +64,7 @@ const thoughtsController = {
         Thoughts.findOneAndDelete({ _id: params.id })
           .then(dbThoughtsData => {
             if (!dbThoughtsData) {
-              res.status(404).json({ message: 'NA' });
+              res.status(404).json({ message: 'N/A' });
               return;
             }
             return User.findOneAndUpdate(
@@ -75,7 +75,7 @@ const thoughtsController = {
           })
           .then(dbUserData => {
             if (!dbUserData) {
-              res.status(404).json({ message: 'NA' });
+              res.status(404).json({ message: 'N/A' });
               return;
             }
             res.json(dbUserData);
@@ -92,7 +92,7 @@ const thoughtsController = {
         )
         .then(dbThoughtsData => {
             if (!dbThoughtsData) {
-                res.status(404).json({ message: 'NA' });
+                res.status(404).json({ message: 'N/A' });
                 return;
             }
             res.json(dbThoughtsData);
@@ -108,7 +108,7 @@ const thoughtsController = {
         )
         .then(dbThoughtsData => {
             if (!dbThoughtsData) {
-                res.status(404).json({ message: 'NA' });
+                res.status(404).json({ message: 'N/A' });
                 return;
             }
             res.json({message: 'reaction deleted'});
