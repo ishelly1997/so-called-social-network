@@ -8,23 +8,32 @@ const UserSchema = new Schema({
     required: 'Username is Required'
   },
 
-  password: {
-    type: String,
-    trim: true,
-    required: 'Password is Required',
-    minlength: 6
-  },
-
   email: {
     type: String,
     unique: true,
     required: true,
     match: [/.+@.+\..+/]
   },
-  thoughts: {},
-  friends: {}
-});
-
+  thoughts: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Thoughts'
+  }],
+  friends: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Users'
+  }]
+},
+{
+  toJSON: {
+    virtuals:true,
+    getters: true
+  },
+  id: false
+}
+);
+UserSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
+})
 const User = model('User', UserSchema);
 
 module.exports = User;
