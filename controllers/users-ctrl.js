@@ -1,6 +1,6 @@
 
 const res = require('express/lib/response');
-const {Users, User} = require('../models');
+const {User} = require('../models');
 const { db } = require('../models/User');
 
 
@@ -61,9 +61,37 @@ const usersController = {
     },
 
     // post friend to user friend list
-    addFriend() {},
-    //delete friend from friend list
-    deleteFriend() {}
+    addFriend({ params }, res) {
+        User.findOneAndUpdate(
+          { _id: params.userId },
+          { $push: { friends: params.friendId }},
+          { new: true }
+        )
+          .then((dbUserData) => {
+            if (!dbUserData) {
+              res.status(404).json({ message: 'NA' });
+              return;
+            }
+            res.json(dbUserData);
+          })
+          .catch((err) => res.status(400).json(err));
+      },
+    
+      deleteFriend({ params }, res) {
+        User.findOneAndUpdate(
+          { _id: params.userId },
+          { $pull: { friends: params.friendId }},
+          { new: true }
+        )
+          .then((dbUserData) => {
+            if (!dbUserData) {
+              res.status(404).json({ message: 'NA' });
+              return;
+            }
+            res.json(dbUserData);
+          })
+          .catch((err) => res.status(400).json(err));
+      }
 }
 
 module.exports = usersController;
