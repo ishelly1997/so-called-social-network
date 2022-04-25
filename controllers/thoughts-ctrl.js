@@ -16,7 +16,7 @@ const thoughtsController = {
         Thoughts.findOne({_id: params.id})
         .then(dbThoughtsData => {
             if (!dbThoughtsData) {
-                res.status(404).json({ message :'NA'});
+                res.status(404).json({ message :'N/A'});
                 return;
             }
             res.json(dbThoughtsData)
@@ -32,7 +32,7 @@ const thoughtsController = {
         .then(dbThoughtsData => {
             User.findOneAndUpdate(
                 { _id: body.userId },
-                { $push: { thoughts: dbThoughtsData._id } },
+                { $push: { thoughts: dbThoughtsData._id }},
                 { new: true }
             )
             .then(dbUserData => {
@@ -68,7 +68,7 @@ const thoughtsController = {
               return;
             }
             return User.findOneAndUpdate(
-              { _id: parmas.userId },
+              { _id: params.userId },
               { $pull: { thoughts: params.Id }},
               { new: true }
             )
